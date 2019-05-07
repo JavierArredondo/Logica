@@ -59,5 +59,4 @@ prepararCafe(TAMANO, PREPARACION, CAFE, ESTACION, SALIDA):-
 	tamano_taza(TAMANO, S), intensidad(CAFE, I), tiempo_preparacion(ESTACION, T), 
 	cafe(PREPARACION, C), leche(PREPARACION, L), agua(PREPARACION, A), chocolate(PREPARACION, CH),
 	CC is C * S, LL is L * S, AA is A * S, CHO is CH * S, TT is T * S * 60,
-	append([CC, LL, AA, CHO], [I, TT], SALIDA).	
-
+	append([CC, LL, AA, CHO], [I, TT], SALIDA).
