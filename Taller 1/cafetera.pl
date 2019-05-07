@@ -48,11 +48,27 @@ intensidad(combinado, medio).
 intensidad(arabica, suave).
 intensidad(descafeinado, suave).
 
+% Nivel de intensidad, relacionado con el agua y leche.
+nivel_intensidad(suave, 0.3).
+nivel_intensidad(medio, 0.6).
+nivel_intensidad(muy, 1).
+
 % Tiempo de preparación asociado a la estación del año
 tiempo_preparacion(verano, 1).
 tiempo_preparacion(primavera, 1.5).
 tiempo_preparacion(otono, 1.5).
 tiempo_preparacion(invierno, 2).
+
+instalada(si).
+
+mayor_que(X, Y):-
+	X>=Y.
+
+intensidad_preparacion(NIP, SALIDA):-
+	NIP >= 0, NIP < 0.3, nivel_intensidad(X, 0.3), append([X],[],SALIDA);
+	NIP >= 0.3, NIP < 0.6, nivel_intensidad(X, 0.6), append([X],[],SALIDA);
+	NIP >= 0.6, nivel_intensidad(X, 1), append([X], [], SALIDA).
+	 
 
 % Reglas y hechos
 prepararCafe(TAMANO, PREPARACION, CAFE, ESTACION, SALIDA):-
@@ -60,3 +76,15 @@ prepararCafe(TAMANO, PREPARACION, CAFE, ESTACION, SALIDA):-
 	cafe(PREPARACION, C), leche(PREPARACION, L), agua(PREPARACION, A), chocolate(PREPARACION, CH),
 	CC is C * S, LL is L * S, AA is A * S, CHO is CH * S, TT is T * S * 60,
 	append([CC, LL, AA, CHO], [I, TT], SALIDA).
+
+cantidadTazas(TAMANO, PREPARACION, CAFE, ESTACION, CANTCAFE, CANTLECHE, CANTAGUA, CANTCHO, SALIDA):-
+	tamano_taza(TAMANO, S), leche(PREPARACION, L), cafe(PREPARACION, C), chocolate(PREPARACION, CH), agua(PREPARACION, A), tiempo_preparacion(ESTACION, T), intensidad(CAFE, I),
+	CC is CANTCAFE/(C * S), LL is CANTLECHE/(L * S), AA is CANTAGUA/(A * S), CHO is CANTCHO/(CH * S), min_member(X, [CC, LL, AA, CHO]), TT is  T * X * 60,
+	append([X], [TT], SALIDA).
+
+sePuedeUsar(INSTALADA, CANTAGUA, CANTCAFE, CANTLECHE):- 
+	instalada(INSTALADA), mayor_que(CANTAGUA, 150), mayor_que(CANTCAFE, 30), mayor_que(CANTLECHE, 30).
+
+intensidadCafe(CAFE, PREPARACION, SALIDA):-
+	intensidad(CAFE, I), nivel_intensidad(I, NI), leche(PREPARACION, L), agua(PREPARACION, A), cafe(PREPARACION, C), chocolate(PREPARACION, CH),
+	NIP is (C/(A + C + CH + L)) * NI, append([NIP], [], SALIDA). 
