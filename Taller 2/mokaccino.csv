@@ -1,7 +1,7 @@
 tamano,temperatura,intensidad,agua,cafe,leche,chocolate,tiempo
-Pequeño,Cálido,Fuerte,Poca,Media,Poca,Poca,Poca
-Pequeño,Caluroso,Suave,Poca,Poca,Media,Poca,Poca
-Mediano,Frío,Medio,Media,Media,Media,Poca,Media
+Pequeno,Calido,Fuerte,Poca,Media,Poca,Poca,Poca
+Pequeno,Caluroso,Suave,Poca,Poca,Media,Poca,Poca
+Mediano,Frio,Medio,Media,Media,Media,Poca,Media
 Mediano,Caluroso,Fuerte,Media,Media,Poca,Poca,Poca
-Grande,Frío,Fuerte,Mucha,Media,Media,Poca,Mucha
-Grande,Cálido,Suave,Mucha,Poca,Media,Poca,Media
+Grande,Frio,Fuerte,Mucha,Media,Media,Poca,Mucha
+Grande,Calido,Suave,Mucha,Poca,Media,Media,Media
