@@ -7,11 +7,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def generarAgua():
+def generarIntervalo(numero):
 
 	result = []
 
-	for aux in range (0,450):
+	for aux in range (0,numero):
 		result.append(aux)
 
 	return result
@@ -21,11 +21,11 @@ def aproximar(nombre,cantidad):
 	result = 0
 
 	tamano = [0,30,60,90,120,150,200,250,300,350,400,450]
-	intensidad = [1,2,3,4,5]
-	temperatura = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-	comun = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
-	tiempo = [1,2,3,4,5,6,7]
-	agua = generarAgua()
+	intensidad = generarIntervalo(5)
+	temperatura = generarIntervalo(30)
+	comun = generarIntervalo(40)
+	tiempo = generarIntervalo(7)
+	agua = generarIntervalo(450)
 
 	if (nombre == "tamano"):
 		for aux in tamano:
