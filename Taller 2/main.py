@@ -143,10 +143,6 @@ def cafeExpresso (espressoCsv,tamano,temperatura,intensidad,agua,cafe,tiempo):
 	cafe.view(sim = preparacionEspresso)
 	tiempo.view(sim = preparacionEspresso)
 
-	numero = int(preparacionEspresso.output["Agua"])
-	numeroAux = aproximar("agua",numero)
-	print(numeroAux)
-
 	print("Agua (ml): " + str(aproximar("agua", int(preparacionEspresso.output["Agua"])) ) )
 	print("Café (gr): " + str(aproximar("cafe", int(preparacionEspresso.output["Cafe"])) ) )
 	print("Tiempo (min): " + str(aproximar("tiempo", int(preparacionEspresso.output["Tiempo"])) ) )
@@ -291,10 +287,9 @@ def declararReglasMokaccino(mokaccinoCsv,tamano,temperatura,intensidad,agua,cafe
 		
 	reglasMokaccino = []
 	for index, row in mokaccinoCsv.iterrows():
-	    #print(row)
 	    antecedente = tamano[row["tamano"]] & temperatura[row["temperatura"]] & intensidad[row["intensidad"]]
-	    consecuente = (agua[row["agua"]], cafe[row["cafe"]], tiempo[row["tiempo"]], leche[row["leche"]], chocolate[row["chocolate"]] )
-	    regla  = ctrl.Rule(antecedente, consecuente)
+	    consecuente = (agua[row["agua"]], cafe[row["cafe"]], leche[row["leche"]], chocolate[row["chocolate"]], tiempo[row["tiempo"]] )
+	    regla = ctrl.Rule(antecedente, consecuente)
 	    reglasMokaccino.append(regla)
 	mokaccinoCtrl = ctrl.ControlSystem(reglasMokaccino)
 	mokaccinoCtrl.view()
@@ -352,7 +347,7 @@ def menu():
 
 				if (opcion1 == '4'):
 					print("Preparando caffe Mokaccino")
-					cafeMokaccino(mokaccino,tamano,temperatura,intensidad,agua,cafe,tiempo,leche,mokaccino)
+					cafeMokaccino(mokaccino,tamano,temperatura,intensidad,agua,cafe,tiempo,leche,chocolate)
 
 				if (opcion1 == '5'):
 					opcion1 = '5'
